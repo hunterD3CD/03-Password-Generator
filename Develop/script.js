@@ -1,19 +1,4 @@
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
-// ------------------------CONDITION 1:  ESTABLISH VARIABLES-----------------------
+// ------------------------1:  ESTABLISH VARIABLES-----------------------
 
 // password variable
 var Number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -96,11 +81,12 @@ var PSoutput;
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 // --------------FUNCTION 1:  GENERATE PASSWORD------------------------------------
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
   // -------------CONDITION 1:  LENGTH CONFIRMATION & CRITERIA CONFIRMATION----------
   // ask user for password length
   PSlength = prompt("The length of the password? 8 to 128");
@@ -262,7 +248,21 @@ function writePassword() {
   }
 
   // ---------------------ARRAY,LOOP & MATH: RANDOM SELECTION--------------------------
-  for (i = 0; i < Length; i++) {
-    var RandomOutput = Output[Math.floor(Math.random() * Output.length)];
+  // array placeholder
+  var PSplaceholder = [];
+
+  // random selection for password
+  for (i = 0; i < PSlength; i++) {
+    var RandomOutput = PSoutput[Math.floor(Math.random() * PSoutput.length)];
+    PSplaceholder.push(RandomOutput);
+    console.log(PSoutput[Math.floor(Math.random() * PSoutput.length)]);
   }
+
+  var password = PSplaceholder.join("");
+  UserInput(password);
+  return password;
+}
+
+function UserInput(password) {
+  document.getElementById("password").textContent = password;
 }
